@@ -1,0 +1,45 @@
+# ==============================================================================
+# NCM-Apex: Next-Concept Modeling Environment Requirements
+# Target: Windows 11 x64 / NVIDIA RTX 3070 Ti (8GB VRAM) / CUDA 11.8 & 12.x
+# ==============================================================================
+
+# Core ML / PyTorch Stack
+torch>=2.2.0
+torchvision
+torchaudio
+transformers>=4.40.0
+accelerate>=0.28.0
+datasets>=2.18.0
+einops>=0.7.0
+ninja
+omegaconf>=2.3.0
+hydra-core>=1.3.2
+
+# Optimization & Compute
+# Note: On Windows, bitsandbytes supports Windows natively from >=0.43.0 or via bitsandbytes-windows
+bitsandbytes>=0.42.0
+
+# Evaluation Metrics & NLP
+sacrebleu>=2.4.0
+rouge-score>=0.1.2
+nltk>=3.8.1
+scipy>=1.12.0
+scikit-learn>=1.4.0
+
+# Motion Design, Rendering & Visuals
+manim>=0.18.0
+moviepy>=1.0.3
+opencv-python>=4.9.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.19.0
+imageio[ffmpeg]>=2.34.0
+pillow>=10.2.0
+
+# Testing, Verification & Infrastructure
+pytest>=8.0.0
+pytest-cov>=4.1.0
+psutil>=5.9.0
+pydantic>=2.6.0
+rich>=13.7.0
+tqdm>=4.66.0

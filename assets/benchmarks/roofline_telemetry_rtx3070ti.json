@@ -1,0 +1,81 @@
+{
+  "theory": {
+    "specs": {
+      "device": "NVIDIA GeForce RTX 3070 Ti Laptop GPU",
+      "peak_fp16_tflops": 43.4,
+      "memory_bandwidth_gb_s": 608.0,
+      "ridge_point": 71.38157894736842
+    },
+    "autoregressive": {
+      "steps": 128,
+      "total_token_positions": 128,
+      "arithmetic_intensity": 1.0,
+      "achievable_tflops": 0.608,
+      "gpu_efficiency_pct": 1.400921658986175,
+      "regime": "Memory-Bound (Bandwidth Stall)"
+    },
+    "masked_diffusion": {
+      "steps": 128,
+      "total_token_positions": 16384,
+      "arithmetic_intensity": 128.0,
+      "achievable_tflops": 43.4,
+      "gpu_efficiency_pct": 100.0,
+      "regime": "Compute-Bound (O(L*T) Over-Evaluation)"
+    },
+    "next_concept_modeling": {
+      "steps": 12,
+      "lk_schedule": [
+        1,
+        2,
+        4,
+        6,
+        9,
+        13,
+        18,
+        26,
+        37,
+        50,
+        67,
+        89
+      ],
+      "total_token_positions": 322,
+      "position_reduction_vs_diffusion": 50.88198757763975,
+      "arithmetic_intensity": 26.833333333333332,
+      "achievable_tflops": 16.314666666666668,
+      "gpu_efficiency_pct": 37.59139784946237,
+      "regime": "Optimal Scale-Parallel Regime"
+    }
+  },
+  "live_latency": {
+    "lk": [
+      1,
+      2,
+      4,
+      6,
+      9,
+      13,
+      18,
+      26,
+      37,
+      50,
+      67,
+      89
+    ],
+    "latencies_ms": [
+      6.53,
+      6.8,
+      7.14,
+      9.67,
+      8.09,
+      7.83,
+      6.96,
+      6.0,
+      6.21,
+      6.25,
+      7.45,
+      6.69
+    ],
+    "total_latency_ms": 85.61,
+    "early_scales_share_pct": 23.9
+  }
+}

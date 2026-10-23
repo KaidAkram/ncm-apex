@@ -1,0 +1,91 @@
+{
+  "unconditional_entropy": {
+    "tinystories": {
+      "human_reference": {
+        "mean_entropy": 4.2553932098112925,
+        "std_entropy": 0.09851391011786609,
+        "preserves_natural_entropy": true
+      },
+      "ncm_k12": {
+        "mean_entropy": 4.214609350107632,
+        "std_entropy": 0.07075220177882738,
+        "preserves_natural_entropy": true
+      },
+      "mdlm_diffusion": {
+        "mean_entropy": 3.8413772525537624,
+        "std_entropy": 0.14719586162286477,
+        "preserves_natural_entropy": true
+      },
+      "aggressive_nar_collapse": {
+        "mean_entropy": 1.9706164030330426,
+        "std_entropy": 0.7497701820286066,
+        "preserves_natural_entropy": false
+      }
+    },
+    "lm1b": {
+      "human_reference": {
+        "mean_entropy": 4.039403881509254,
+        "std_entropy": 0.07820882214403464,
+        "preserves_natural_entropy": true
+      },
+      "ncm_k12": {
+        "mean_entropy": 3.9988706873717716,
+        "std_entropy": 0.05711870630652861,
+        "preserves_natural_entropy": true
+      },
+      "mdlm_diffusion": {
+        "mean_entropy": 3.4333122400920475,
+        "std_entropy": 0.10236013826670583,
+        "preserves_natural_entropy": false
+      },
+      "aggressive_nar_collapse": {
+        "mean_entropy": 2.2275770125947676,
+        "std_entropy": 0.23171447977075157,
+        "preserves_natural_entropy": false
+      }
+    }
+  },
+  "xsum": {
+    "ncm": {
+      "rouge1": 39.48169569554452,
+      "rouge2": 14.738885297708828,
+      "rougeL": 34.32576426006918,
+      "nfe": 8,
+      "speedup_vs_diff": 16.0
+    },
+    "ar": {
+      "rouge1": 28.544891640866872,
+      "rouge2": 3.4722222222222228,
+      "rougeL": 22.6625386996904,
+      "nfe": 48,
+      "speedup_vs_diff": 2.6666666666666665
+    },
+    "mdlm": {
+      "rouge1": 36.325437850334794,
+      "rouge2": 5.675606641123882,
+      "rougeL": 28.7625411677463,
+      "nfe": 128,
+      "speedup_vs_diff": 1.0
+    }
+  },
+  "wmt14": {
+    "ncm": {
+      "bleu": 38.290865736644264,
+      "chrf": 57.3447735704202,
+      "nfe": 11,
+      "speedup_vs_diff": 11.636363636363637
+    },
+    "ar": {
+      "bleu": 22.313446678528322,
+      "chrf": 47.19134547052243,
+      "nfe": 64,
+      "speedup_vs_diff": 2.0
+    },
+    "mdlm": {
+      "bleu": 9.369031627258959,
+      "chrf": 50.08899243718413,
+      "nfe": 128,
+      "speedup_vs_diff": 1.0
+    }
+  }
+}
