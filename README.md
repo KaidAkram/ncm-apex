@@ -5,7 +5,7 @@
 [![PyTorch 2.5.1](https://img.shields.io/badge/PyTorch-2.5.1%2BCU121-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![CUDA 12.1](https://img.shields.io/badge/CUDA-12.1-76B900?style=flat-square&logo=nvidia&logoColor=white)](https://developer.nvidia.com/cuda-toolkit)
 [![Target GPU](https://img.shields.io/badge/NVIDIA-RTX%203070%20Ti%20(8GB)-76B900?style=flat-square&logo=nvidia&logoColor=white)](https://www.nvidia.com/)
-[![Tests Passing](https://img.shields.io/badge/PyTests-38%2F38%20Passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)](tests/)
+[![Tests Passing](https://img.shields.io/badge/PyTests-33%2F33%20Passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)](tests/)
 [![Research Paper](https://img.shields.io/badge/arXiv-2610.14162-B31B1B?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2610.14162)
 [![Official Stanford Codebase](https://img.shields.io/badge/Stanford-HazyResearch%2Fncm-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/HazyResearch/ncm)
 [![Research Blog Post](https://img.shields.io/badge/Research%20Blog-Mastering%20NCM-6366F1?style=flat-square&logo=astro&logoColor=white)](https://kaidakram.github.io/dojo/blog/mastering-next-concept-modeling/)
@@ -19,6 +19,7 @@
 
 **NCM-Apex** is a complete, ground-up implementation, hardware roofline profiling suite, and algorithmic research extension of **Next-Concept Modeling (NCM)** ([Stanford Hazy Research & Together AI, arXiv:2610.14162v1](https://arxiv.org/pdf/2610.14162)), engineered specifically to run on consumer-grade hardware (NVIDIA GeForce RTX 3070 Ti, 8GB VRAM).
 
+- 📦 **GitHub Repository**: [github.com/KaidAkram/ncm-apex](https://github.com/KaidAkram/ncm-apex)
 - 📖 **Interactive Research Blog Masterclass**: [kaidakram.github.io/dojo/blog/mastering-next-concept-modeling/](https://kaidakram.github.io/dojo/blog/mastering-next-concept-modeling/)
 - 📄 **Primary Research Paper**: [arXiv:2610.14162 (PDF)](https://arxiv.org/pdf/2610.14162)
 - 🏛️ **Official Stanford Repository**: [github.com/HazyResearch/ncm](https://github.com/HazyResearch/ncm)
@@ -46,11 +47,8 @@ We went beyond paper reproduction to directly resolve the open limitations docum
 - 🎯 **Extension 8C: Confidence-Gated Residual Copy Head** (`src/layers/copy_gate.py`):
   Monitors cross-attention entropy $H_{\text{attn}} < 0.60$ nats to route out-of-vocabulary entities directly from prompt tokens, slashing Table 11 entity drift from **1.20% down to 0.02% (98.3% relative error reduction)**.
 
-### 4. Zero-Disk 60 FPS Headless Motion Design Pipeline
-- Streams raw NumPy BGR buffers directly into FFmpeg stdin via OS memory pipes (`src/motion/`), rendering 60 FPS benchmark videos without SATA/NVMe I/O thrashing.
-
-### 5. 100% Certified Test Suite (38/38 Passing PyTests)
-- Automated coverage across all 8 phases: Stage-1 RVQ-VAE, Stage-2 Transformer Prior, Block-Diagonal Attention, Corruption Schedulers, Sudoku Engine, Multi-Dataset Benchmarks (LM1B, TinyStories, XSum, WMT14), Probing Lab, and all 3 PhD Extensions.
+### 4. 100% Certified Test Suite (33/33 Passing PyTests)
+- Automated coverage across the entire neural stack: Stage-1 RVQ-VAE, Stage-2 Transformer Prior, Block-Diagonal Attention, Corruption Schedulers, Sudoku Engine, Multi-Dataset Benchmarks (LM1B, TinyStories, XSum, WMT14), Latent Probing Lab, and all 3 PhD Extensions.
 
 ---
 
@@ -68,30 +66,26 @@ We went beyond paper reproduction to directly resolve the open limitations docum
 
 ---
 
-## 🗂️ Repository Architecture & Codebase Layout
+## 🗂️ Clean Repository Architecture & Codebase Layout
 
 ```
-NCM/
+ncm-apex/
 ├── assets/
-│   ├── diagrams/           # 2K Keynote publication diagrams (SVG + PNG)
-│   ├── trajectories/       # Real empirical JSON traces (Sudoku, WMT14, Story Algebra)
-│   └── videos/             # 60 FPS MP4 & WebM motion benchmark videos
-├── docs/                   # Architectural blueprints & spec guides
-├── phases_Tests/           # Comprehensive certification reports (Phases 1 through 8)
+│   ├── benchmarks/         # Empirical benchmark results JSON
+│   └── trajectories/       # Real empirical JSON traces (Sudoku, WMT14, Story Algebra)
 ├── scripts/
-│   ├── deploy_2k_diagrams.py         # 2K keynote diagram deployment pipeline
-│   ├── render_motion_assets.py       # Zero-disk 60 FPS NVENC video pipeline
-│   ├── train_tokenizer.py            # Stage 1 Multiscale RVQ-VAE training script
-│   └── write_flagship_blog_post.py   # Publication article generator
+│   ├── download_checkpoints.py       # Download official Stanford checkpoints
+│   ├── run_sudoku_benchmark.py       # Run 3-paradigm Sudoku benchmark suite
+│   └── train_tokenizer.py            # Stage 1 Multiscale RVQ-VAE training script
 ├── src/
-│   ├── benchmarks/         # 3-Paradigm benchmark harness & RTX 3070 Ti Roofline profiler
+│   ├── benchmarks/         # 3-Paradigm benchmark harness & Sudoku evaluation
 │   ├── engine/             # Early exit, Confusion corruption, Sampler, Trainer
 │   ├── layers/             # Block-diagonal attention mask, Residual Copy-Gate, STE
 │   ├── models/             # Multiscale RVQ-VAE Tokenizer & NCM Transformer Prior
-│   ├── motion/             # Hyperframe compositor & video scripts
 │   ├── probing/            # Latent concept surgery, story algebra, causal intervention
-│   └── visualizers/        # High-resolution matplotlib / keynote renderers
-├── tests/                  # 38 Automated PyTests certifying Phases 1–8
+│   ├── telemetry/          # RTX 3070 Ti Roofline profiler
+│   └── utils/              # Checkpoint adapter and Sudoku constraint validator
+├── tests/                  # 33 Automated PyTests certifying all components
 ├── requirements.txt        # Python dependency manifest
 └── README.md
 ```
@@ -114,15 +108,15 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 pip install -r requirements.txt
 ```
 
-### 2. Run the Full 38-Test Suite
+### 2. Run the Full 33-Test Suite
 ```bash
 pytest tests/ -v
-# Output: 38 passed in ~14.2s (100% test pass rate)
+# Output: 33 passed in ~22s (100% test pass rate)
 ```
 
 ### 3. Run Sudoku 3-Way Benchmark Showdown
 ```bash
-python -m src.benchmarks.benchmark_harness --dataset sudoku --split hard --eval-all
+python scripts/run_sudoku_benchmark.py --split hard
 ```
 
 ### 4. Test Dynamic Early Exit (Extension 8A)
@@ -130,10 +124,6 @@ python -m src.benchmarks.benchmark_harness --dataset sudoku --split hard --eval-
 python -m src.engine.early_exit --tau 0.05 --benchmark
 ```
 
-### 5. Render Zero-Disk 60 FPS Motion Videos
-```bash
-python scripts/render_motion_assets.py --preset keynote_60fps
-```
 
 ---
 

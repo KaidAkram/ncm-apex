@@ -43,24 +43,36 @@ scratch/
 Thumbs.db
 desktop.ini
 
-# Large Model Weights (Keep code & JSON traces, track checkpoints on HuggingFace)
+# Large Model Weights
 *.pt
 *.pth
 *.bin
 *.safetensors
 *.ckpt
 
-# Node (Motion engine)
+# Node
 node_modules/
-
-# External cloned reference repos
-reference/
 
 # External reference repos
 reference/
 
-download.pdf
+# PDFs & Local Batch Scripts
+*.pdf
+*.bat
 
+# Internal Project Docs & Certification Phase Reports
+docs/
+phases_Tests/
 
-# Post assets staging folder
+# Large Presentation Media & Animation Source (Hosted on Research Blog)
+assets/videos/
 post_assets/
+src/motion/
+src/visualizers/
+
+# Internal Tooling & Video Render Scripts
+scripts/deploy_2k_diagrams.py
+scripts/sync_blog_assets.py
+scripts/write_flagship_blog_post.py
+scripts/render_motion_assets.py
+tests/test_phase_6_video.py
